@@ -1,25 +1,3 @@
-name: Docker Build
-description: Build and push Docker images to Azure Container Registry
-inputs:
-    DOCKER_REPO:
-      description: 'Docker repository'
-      required: true
-    DOCKER_FILE:
-      description: 'Dockerfile path'
-      required: true
-    BUILD_ARGS:
-      description: 'Build arguments'
-      required: false
-runs:
-  using: composite
-  steps:
-  - name: Build container image and push to Azure
-    uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991 # v6.13.0
-    with:
-      file: ${{ inputs.DOCKER_FILE }}
-      tags: ${{ inputs.DOCKER_REPO }}:latest
-      build-args: ${{ inputs.BUILD_ARGS }}
-      push: true
 name: Docker Build and Deploy
 description: Build and push Docker images to Azure Container Registry, then deploy to AKS
 inputs:
